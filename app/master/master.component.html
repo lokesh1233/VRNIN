@@ -1,0 +1,81 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <mat-icon class="example-icon" >menu</mat-icon>
+      <span>My Home</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <mat-tab-group class="demo-tab-group">
+    <mat-tab label="Users">
+      
+      <div class="demo-tab-content">
+      <mat-nav-list>
+          <!-- MatSelectionList='selectionList' -->
+    <mat-list-item  mat-selection-list>
+       <!-- <a routerLink="/rentDetail" >   -->
+       <!-- <mat-icon mat-list-icon>person pin</mat-icon>
+      <h4 mat-line>lokesh</h4>
+      <span class="example-spacer"></span>
+         <h4 >12,000</h4>   -->
+         <mat-icon mat-list-icon>person pin</mat-icon>
+         <a matLine href="/rentDetail">lokesh</a>
+         <h4 >12,000</h4>
+         <!-- <button mat-icon-button (click)="matSelectionList()">
+            <mat-icon>info</mat-icon>
+         </button> -->
+
+
+
+    </mat-list-item>
+    
+    <mat-list-item>
+      <mat-icon mat-list-icon>person pin</mat-icon>
+      <h4 mat-line>ramesh</h4>
+      <span class="example-spacer"></span>
+        <h4 >12,000</h4>
+    </mat-list-item>
+  
+  </mat-nav-list>
+  
+  
+  
+      
+      </div>
+    </mat-tab>
+    <mat-tab label="Mess">
+    
+    <div class="demo-tab-content">
+        <mat-nav-list>
+    
+    <mat-list-item>
+      <mat-icon mat-list-icon>person pin</mat-icon>
+      <h4 mat-line>linga</h4>
+      <span class="example-spacer"></span>
+        <h4 >12,000</h4>
+        
+    </mat-list-item>
+    
+    <mat-list-item>
+      <mat-icon mat-list-icon>person pin</mat-icon>
+      <h4 mat-line>sandeep</h4>
+      <span class="example-spacer"></span>
+        <h4 >12,000</h4>
+    </mat-list-item>
+  
+  </mat-nav-list>
+      </div>  
+    </mat-tab>
+  
+  </mat-tab-group>
+  <div class="button-row positionPlace">
+    <a routerLink="/createUser" >
+    <button mat-mini-fab>
+      <mat-icon>add</mat-icon>
+    </button>
+    </a>
+  </div>
+  
+  <!-- Copyright 2018 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
