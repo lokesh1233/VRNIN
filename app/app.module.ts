@@ -43,6 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MasterComponent }   from './master/master.component';
 import { RentDetailComponent }   from './rent-detail/rent-detail.component';
 import { CreateUserComponent }   from './create-user/create-user.component';
+import { CreateItemComponent }   from './create-Item/create-Item.component';
 import { AppRoutingModule }     from './app-routing.module';
 @NgModule({
   imports: [
@@ -120,7 +121,8 @@ import { AppRoutingModule }     from './app-routing.module';
     AppComponent,
     MasterComponent,
     RentDetailComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    CreateItemComponent
   ],
   providers: [ MasterComponent ],
   bootstrap: [ AppComponent ]

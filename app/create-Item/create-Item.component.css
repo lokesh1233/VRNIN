@@ -1,0 +1,18 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.footerPOsition{
+  position: fixed;
+  bottom: 0;
+}
+
+.footerPOsition > button{
+  -webkit-box-flex: 1;
+  flex: 1 1 auto;
+}

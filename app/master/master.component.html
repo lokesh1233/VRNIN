@@ -7,23 +7,147 @@
   </mat-toolbar>
   
   <mat-tab-group class="demo-tab-group">
-    <mat-tab label="Users">
+  
+  
+    <mat-tab label="Mess2">
+    <mat-drawer-container class="example-container">
+      <mat-drawer mode="side" opened="true">
+        <mat-card class="example-card">
+          <mat-card-header>    
+          <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          </mat-card-header>
+          <mat-card-content>
+            <p>Lokesh</p>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="example-card">
+            <mat-card-header>    
+            <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            </mat-card-header>
+            <mat-card-content>
+              <p>Lokesh</p>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="example-card">
+              <mat-card-header>    
+              <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+              </mat-card-header>
+              <mat-card-content>
+                <p>Lokesh</p>
+              </mat-card-content>
+            </mat-card>
+      </mat-drawer>
+      <mat-drawer-content>
+
+           <!-- <mat-nav-list>
+    
+              <mat-list-item> -->
+                <!-- <p> -->
+                  <div layout="column">
+                    <div>
+                      <img width ='60px' src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                    </div>
+                    <div layout="row">
+                        <h5 >lunch</h5> 
+                        <h5 >Rs. 60</h5>
+                    </div>
+                  </div>
+                  
+                  <!-- <mat-icon mat-list-icon>person pin</mat-icon> -->
+                <!-- <h4 >linga</h4> -->
+                <!-- <div>
+                    <h4 >linga</h4>
+
+
+                </div> -->
+              <!-- </div> -->
+                <!-- <span class="example-spacer"></span>
+                  <input> -->
+                <!-- </p> -->
+              <!-- </mat-list-item>
+              
+              <mat-list-item>
+                <mat-icon mat-list-icon>person pin</mat-icon>
+                <h4 mat-line>sandeep</h4>
+                <span class="example-spacer"></span>
+                  <h4 >12,000</h4>
+              </mat-list-item>
+            
+            </mat-nav-list>  -->
+
+        <!-- <mat-card class="example-card">
+          <mat-card-header>    
+              
+          <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-title >Doshaasd asd asd</mat-card-title>
+           
+        </mat-card-header> -->
+          <!-- <mat-card-content>
+               <mat-form-field class="example-full-width"> 
+                  <input matInput placeholder="Amount" value="Sushi">
+                 </mat-form-field> 
+             <input></input> 
+          </mat-card-content> -->
+        <!-- </mat-card> -->
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </mat-tab>
+    <mat-tab label="Mess">
+       <mat-nav-list>
+  <mat-list-item> 
+    
+      <mat-card class="example-card">
+      <mat-card-header>    
+      <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      </mat-card-header>
+      <mat-card-content>
+        <p>Lokesh</p>
+      </mat-card-content>
+    </mat-card>
+   </mat-list-item>
+  <mat-list-item> 
+    
+    <mat-card class="example-card">
+    <mat-card-header>    
+    <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    </mat-card-header>
+    <mat-card-content>
+      <p>Lokesh</p>
+    </mat-card-content>
+  </mat-card>
+   
+ </mat-list-item>
+</mat-nav-list> 
+  
+  
+  </mat-tab>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <!-- <mat-tab label="Users">
       
       <div class="demo-tab-content">
       <mat-nav-list>
-          <!-- MatSelectionList='selectionList' -->
+      //    MatSelectionList='selectionList' 
     <mat-list-item  mat-selection-list>
-       <!-- <a routerLink="/rentDetail" >   -->
-       <!-- <mat-icon mat-list-icon>person pin</mat-icon>
-      <h4 mat-line>lokesh</h4>
-      <span class="example-spacer"></span>
-         <h4 >12,000</h4>   -->
+     // <a routerLink="/rentDetail" >  
+     //   <mat-icon mat-list-icon>person pin</mat-icon>
+     // <h4 mat-line>lokesh</h4>
+    //  <span class="example-spacer"></span>
+     //    <h4 >12,000</h4>   
          <mat-icon mat-list-icon>person pin</mat-icon>
          <a matLine href="/rentDetail">lokesh</a>
          <h4 >12,000</h4>
-         <!-- <button mat-icon-button (click)="matSelectionList()">
-            <mat-icon>info</mat-icon>
-         </button> -->
+      //    <button mat-icon-button (click)="matSelectionList()">
+      //      <mat-icon>info</mat-icon>
+      //   </button> 
 
 
 
@@ -65,11 +189,11 @@
   
   </mat-nav-list>
       </div>  
-    </mat-tab>
+    </mat-tab> -->
   
   </mat-tab-group>
   <div class="button-row positionPlace">
-    <a routerLink="/createUser" >
+    <a routerLink="/createItem" >
     <button mat-mini-fab>
       <mat-icon>add</mat-icon>
     </button>

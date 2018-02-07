@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 import { Router } from '@angular/router';
 
-
 @Component({
-   selector: 'app-create-user',
-   templateUrl: './create-user.component.html',
-   styleUrls: ['./create-user.component.css']
+   selector: 'app-create-Item',
+   templateUrl: './create-Item.component.html',
+   styleUrls: ['./create-Item.component.css']
  })
-export class CreateUserComponent {
+export class CreateItemComponent {
 constructor(public snackBar: MatSnackBar, private router: Router) {}
 
   openSnackBar(message: string, action: string) {
@@ -18,55 +17,30 @@ constructor(public snackBar: MatSnackBar, private router: Router) {}
   }
 
 
-//   constructor(private heroService: HeroService) { }
-
- //  ngOnInit() {
-//     this.getHeroes();
 
  createUserData = {
   owner_id:"",
-   fullfillmentAmt:"",
-   userID:"",
-   imageType:"",
-   fullName:"",
-   joiningDte:"",
-   mobileNo:"",
-   RntAmount:"",
-   DOB:"",
-   OthrMobileNo:"",
-  address:"",
-  typeOfHstl:"Hostel/PG",
-  hstlTypes:[{
-      value:"Hostel/PG"
-      },{
-      value:"Outer"
-      }],
- imagePath:""
+  Amount:"",
+  ItemId:"",
+  ItemName:"",
+  imagePath:"",
+  imageType:"",
+  ingredient:""
 }
 
-
-switchHstl(evt){
-  this.createUserData.typeOfHstl=evt.value;
-}
 
 onSubmit(){
   let dta = this.createUserData;
-  if(dta.fullName == ''){
-    this.openSnackBar('Enter full name', '');
+  if(dta.ItemName == ''){
+    this.openSnackBar('Enter item name', '');
     return;
-  }else if(dta.mobileNo == ''){
-    this.openSnackBar('Enter mobile no', '');
-    return;
-  }else if(dta.joiningDte == ''){
-    this.openSnackBar('Enter joining date', '');
-    return;
-  }else if(dta.RntAmount == ''){ 
-    this.openSnackBar('Enter Rent Amount', '');
+  }else if(dta.Amount == ''){ 
+    this.openSnackBar('Enter Amount', '');
     return;
   }
   //debugger;
-  this.refurnfileXString(document.getElementById('fileUpload'));
- // var data 
+  this.refurnfileXString(document.getElementById('ItemfileUpload'));
+  // var data 
   // this.router.navigate(['/master']);
   // debugger;
 }
@@ -74,15 +48,13 @@ onSubmit(){
 createNewUser(fileString, MIMEType){
   let dta = this.createUserData;
   dta.imagePath = fileString;
-  dta.fullfillmentAmt = dta.RntAmount
   dta.imageType = MIMEType;
   let id = window.HostelClient.authedId();
-  dta.userID = id;
-  delete dta.hstlTypes;
+  dta.ItemId = id;
   dta.owner_id= id;
   var that = this;
-  window.HostelUserDB.collection('UserList').insertOne(dta).then(function(){
-    that.openSnackBar('Succesflly user '+ dta.fullName + ' created', '');
+  window.HostelUserDB.collection('ItemList').insertOne(dta).then(function(){
+    that.openSnackBar('Succesflly user '+ dta.ItemName + ' created', '');
     that.router.navigate(['/master']);
     });   
 }

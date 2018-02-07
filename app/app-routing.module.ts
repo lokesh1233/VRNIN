@@ -4,12 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { MasterComponent }   from './master/master.component';
 import { RentDetailComponent }   from './rent-detail/rent-detail.component';
 import { CreateUserComponent }   from './create-user/create-user.component';
+import { CreateItemComponent }   from './create-Item/create-Item.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/master', pathMatch: 'full' },
   { path: 'master', component: MasterComponent },
   { path: 'rentDetail', component: RentDetailComponent },
-  { path: 'createUser', component: CreateUserComponent }
+  { path: 'createUser', component: CreateUserComponent },
+  { path: 'createItem', component: CreateItemComponent }
 ];
 
 @NgModule({

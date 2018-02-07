@@ -37,7 +37,7 @@
 
   <mat-form-field>
     <mat-select placeholder="Select"  id="typeHstl" (change)="switchHstl($event)">
-      <mat-option *ngFor="let hstl of createUserData.typeOfHstl" [value]="hstl.value">{{hstl.value}}</mat-option>
+      <mat-option *ngFor="let hstl of createUserData.hstlTypes" [value]="hstl.value">{{hstl.value}}</mat-option>
     </mat-select>
   </mat-form-field>
 
