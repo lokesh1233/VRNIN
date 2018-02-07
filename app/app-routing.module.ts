@@ -5,6 +5,8 @@ import { MasterComponent }   from './master/master.component';
 import { RentDetailComponent }   from './rent-detail/rent-detail.component';
 import { CreateUserComponent }   from './create-user/create-user.component';
 import { CreateItemComponent }   from './create-Item/create-Item.component';
+import { ItemListComponent }   from './item-List/item-List.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/master', pathMatch: 'full' },
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: 'rentDetail', component: RentDetailComponent },
   { path: 'createUser', component: CreateUserComponent },
   { path: 'createItem', component: CreateItemComponent }
+  // ,
+  // { path: 'itemList', component: ItemListComponent }
 ];
 
 @NgModule({

@@ -1,1 +1,53 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+
+         <mat-card class="example-card">
+          <mat-card-header>    
+                <mat-card-title>Fathima</mat-card-title>
+                <mat-card-subtitle>Unpaid Rs. 10,000</mat-card-subtitle>
+            <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          </mat-card-header>
+          <mat-card-content>
+            <p>paid: Rs. 14,000.00</p>
+            <p>Tot: Rs. 24,000.00</p>
+          </mat-card-content>
+        </mat-card>
+        <mat-nav-list>
+                  <mat-list-item  mat-selection-list>
+                        <mat-icon mat-list-icon>home</mat-icon>
+                        <h4 mat-line>My Home</h4>
+                  </mat-list-item>
+                  
+                  <mat-list-item>
+                    <mat-icon mat-list-icon>account_circle</mat-icon>
+                    <h4 mat-line>Users</h4>
+                  </mat-list-item>
+
+                <mat-list-item>
+                        <mat-icon mat-list-icon>store</mat-icon>
+                        <h4 mat-line>Items</h4>
+                </mat-list-item>
+
+                <mat-list-item>
+                        <mat-icon mat-list-icon>equalizer</mat-icon>
+                        <h4 mat-line>Report</h4>
+                </mat-list-item>
+
+                </mat-nav-list>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <button type="button" mat-button (click)="drawer.toggle()">
+                    <mat-icon class="example-icon">menu</mat-icon>
+                </button>
+                <span>My Home</span>
+                <span class="example-spacer"></span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <router-outlet></router-outlet>        
+    </div>
+</mat-drawer-container>
+
+        
