@@ -1,25 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {MatSnackBar} from '@angular/material';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
-   selector: 'app-item-List',
-   templateUrl: './item-List.component.html',
-   styleUrls: ['./item-List.component.css']
+   selector: 'app-user-List',
+   templateUrl: './user-List.component.html',
+   styleUrls: ['./user-List.component.css']
  })
 
-export class ItemListComponent implements OnInit{
+export class UserListComponent implements OnInit{
 constructor(public snackBar: MatSnackBar, private router: Router, public sanitizer: DomSanitizer) {}
 ngOnInit(){ 
-  this.readItemListData();
-}
-
-getItem(id: number | string){
-  return this.createUserData
-      .map(data => {
-        debugger;
-      });
+  this.readUserListData();
 }
 
   openSnackBar(message: string, action: string) {
@@ -29,10 +22,14 @@ getItem(id: number | string){
   }
 
   onRowClicked(evt){
-    this.router.navigate(['/createItem', evt.ItemId]);
+    this.router.navigate(['/createUser', evt.userID]);
   }
 
- createUserData = []
+ createUserData = [{
+   fullName:"",
+   fullfillmentAmt:"",
+    imagePath:""
+  }]
 
 b64toBlob(base64, contentType, sliceSize) {
       contentType = contentType || '';
@@ -53,9 +50,9 @@ b64toBlob(base64, contentType, sliceSize) {
   } 
 
 
-readItemListData(){
+readUserListData(){
  var that = this;
-window.HostelUserDB.collection('ItemList').find({}).execute().then(docs => {
+window.HostelUserDB.collection('UserList').find({}).execute().then(docs => {
  debugger;
 that.imageRedefiningdata(docs);
 });

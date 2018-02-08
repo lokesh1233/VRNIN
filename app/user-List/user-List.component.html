@@ -4,28 +4,20 @@
     <mat-icon aria-label="navigate before">navigate_before</mat-icon>
   </button>
   <span class="example-spacer"></span>
-  <span>Item List</span> 
+  <span>User List</span> 
 </mat-toolbar-row>
 </mat-toolbar>
 
 <div class="example-container">
    <mat-nav-list>
-    <mat-list-item *ngFor="let data of createUserData" (click)="onRowClicked(data)">
+    <mat-list-item *ngFor="let data of createUserData" (click)="onRowClicked(item)">
 <div class="flexDisplayClass">
   <img mat-card-avatar src="{{data.imagePath}}" alt="">
 <div>
-  <h5 class="marginclass">  {{ data.ItemName }} </h5>
+  <h5 class="marginclass">  {{ data.fullName }} </h5>
   <h5 class="marginclass">Rs.  {{ data.Amount }}</h5>
 </div>
   </div> 
     </mat-list-item>
   </mat-nav-list> 
 </div>
-
-<div class="button-row positionPlace">
-    <a routerLink="/createItem/A" >
-    <button mat-mini-fab>
-      <mat-icon>add</mat-icon>
-    </button>
-    </a>
-  </div>

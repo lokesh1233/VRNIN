@@ -12,29 +12,12 @@
             <p>Tot: Rs. 24,000.00</p>
           </mat-card-content>
         </mat-card>
-        <mat-list>
-                  <mat-list-item  mat-selection-list>
-                        <mat-icon mat-list-icon>home</mat-icon>
-                        <a routerLink="/master" > My Home</a>
+        <mat-nav-list>
+                  <mat-list-item  *ngFor="let data of createHomeData" (click)="drawer.toggle(); onRowClicked(data)">
+                        <mat-icon mat-list-icon>{{data.icon}}</mat-icon>
+                        <h4 mat-line>{{data.name}}</h4>
                   </mat-list-item>
-                  
-                  <mat-list-item>
-                      
-                    <mat-icon mat-list-icon>account_circle</mat-icon>
-                    <a routerLink="/userList" > Users </a>
-                  </mat-list-item>
-
-                <mat-list-item>
-                        <mat-icon mat-list-icon>store</mat-icon>
-                        <a routerLink="/itemList" > Items </a>
-                </mat-list-item>
-
-                <mat-list-item>
-                        <mat-icon mat-list-icon>equalizer</mat-icon>
-                        <h4 mat-line>Report</h4>
-                </mat-list-item>
-
-                </mat-list>
+                </mat-nav-list>
     </mat-drawer>
 
     <div class="example-sidenav-content">

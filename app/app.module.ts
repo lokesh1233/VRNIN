@@ -45,6 +45,7 @@ import { RentDetailComponent }   from './rent-detail/rent-detail.component';
 import { CreateUserComponent }   from './create-user/create-user.component';
 import { CreateItemComponent }   from './create-Item/create-Item.component';
 import { ItemListComponent }   from './item-List/item-List.component';
+import { UserListComponent }   from './user-List/user-List.component';
 import { AppRoutingModule }     from './app-routing.module';
 @NgModule({
   imports: [
@@ -124,9 +125,10 @@ import { AppRoutingModule }     from './app-routing.module';
     RentDetailComponent,
     CreateUserComponent,
     CreateItemComponent,
-    ItemListComponent
+    ItemListComponent,
+    UserListComponent
   ],
-  providers: [ MasterComponent ],
+  providers: [ MasterComponent, ItemListComponent ],
   bootstrap: [ AppComponent ]
 })
 

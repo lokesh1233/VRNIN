@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatSnackBar} from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import { ItemListComponent }   from '../item-List/item-List.component';
 
 @Component({
    selector: 'app-create-Item',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
    styleUrls: ['./create-Item.component.css']
  })
 export class CreateItemComponent {
-constructor(public snackBar: MatSnackBar, private router: Router) {}
+constructor(public snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute, public itemComponent: ItemListComponent) {}
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
@@ -16,7 +18,15 @@ constructor(public snackBar: MatSnackBar, private router: Router) {}
     });
   }
 
+  ngOnInit(){ 
 
+      let id = this.route.snapshot.paramMap.get('id');
+      if(id != 'A'){
+        this.createUserData = this.itemComponent.getItem(id);
+      }
+
+
+  }
 
  createUserData = {
   owner_id:"",
