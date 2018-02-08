@@ -54,7 +54,7 @@ createNewUser(fileString, MIMEType){
   dta.owner_id= id;
   var that = this;
   window.HostelUserDB.collection('ItemList').insertOne(dta).then(function(){
-    that.openSnackBar('Succesflly user '+ dta.ItemName + ' created', '');
+    that.openSnackBar('Succesflly '+ dta.ItemName + ' item created', '');
     that.router.navigate(['/master']);
     });   
 }

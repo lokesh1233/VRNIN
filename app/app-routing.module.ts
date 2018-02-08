@@ -13,9 +13,8 @@ const routes: Routes = [
   { path: 'master', component: MasterComponent },
   { path: 'rentDetail', component: RentDetailComponent },
   { path: 'createUser', component: CreateUserComponent },
-  { path: 'createItem', component: CreateItemComponent }
-  // ,
-  // { path: 'itemList', component: ItemListComponent }
+  { path: 'createItem', component: CreateItemComponent },
+   { path: 'itemList', component: ItemListComponent }
 ];
 
 @NgModule({

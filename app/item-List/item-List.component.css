@@ -16,3 +16,11 @@
   -webkit-box-flex: 1;
   flex: 1 1 auto;
 }
+
+.flexDisplayClass{
+  display: flex;
+}
+
+.marginclass{
+  margin: 6px 0 0 20px;
+}

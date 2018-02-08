@@ -4,27 +4,20 @@
     <mat-icon aria-label="navigate before">navigate_before</mat-icon>
   </button>
   <span class="example-spacer"></span>
-  <span>Create new Item</span>
+  <span>Item List</span> 
 </mat-toolbar-row>
 </mat-toolbar>
 
 <div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Item name" required value={{createUserData.ItemName}} [(ngModel)]="createUserData.ItemName">
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <input type="number" matInput placeholder="Item Amount" required value={{createUserData.Amount}} [(ngModel)]="createUserData.Amount">
-  </mat-form-field>  
-
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Ingredients" required value={{createUserData.ingredient}} [(ngModel)]="createUserData.ingredient"></textarea>
-  </mat-form-field>
-
-  <input type="file" ng2FileSelect id='ItemfileUpload'/>
-
+   <mat-nav-list>
+    <mat-list-item *ngFor="let data of createUserData" (click)="onRowClicked(item)">
+<div class="flexDisplayClass">
+  <img mat-card-avatar src="{{data.imagePath}}" alt="">
+<div>
+  <h5 class="marginclass">  {{ data.ItemName }} </h5>
+  <h5 class="marginclass">Rs.  {{ data.Amount }}</h5>
 </div>
-
-<mat-toolbar color="ThemePalette" class="footerPOsition">
-  <button mat-raised-button color="warn" (click)="onSubmit()">Submit</button>
-</mat-toolbar>
+  </div> 
+    </mat-list-item>
+  </mat-nav-list> 
+</div>

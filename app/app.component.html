@@ -12,20 +12,21 @@
             <p>Tot: Rs. 24,000.00</p>
           </mat-card-content>
         </mat-card>
-        <mat-nav-list>
+        <mat-list>
                   <mat-list-item  mat-selection-list>
                         <mat-icon mat-list-icon>home</mat-icon>
-                        <h4 mat-line>My Home</h4>
+                        <a routerLink="/master" > My Home</a>
                   </mat-list-item>
                   
                   <mat-list-item>
+                      
                     <mat-icon mat-list-icon>account_circle</mat-icon>
-                    <h4 mat-line>Users</h4>
+                    <a routerLink="/userList" > Users </a>
                   </mat-list-item>
 
                 <mat-list-item>
                         <mat-icon mat-list-icon>store</mat-icon>
-                        <h4 mat-line>Items</h4>
+                        <a routerLink="/itemList" > Items </a>
                 </mat-list-item>
 
                 <mat-list-item>
@@ -33,7 +34,7 @@
                         <h4 mat-line>Report</h4>
                 </mat-list-item>
 
-                </mat-nav-list>
+                </mat-list>
     </mat-drawer>
 
     <div class="example-sidenav-content">
