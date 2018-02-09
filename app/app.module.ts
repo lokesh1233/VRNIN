@@ -128,7 +128,7 @@ import { AppRoutingModule }     from './app-routing.module';
     ItemListComponent,
     UserListComponent
   ],
-  providers: [ MasterComponent, ItemListComponent ],
+  providers: [ MasterComponent, ItemListComponent, UserListComponent ],
   bootstrap: [ AppComponent ]
 })
 

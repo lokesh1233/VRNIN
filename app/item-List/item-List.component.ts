@@ -66,12 +66,37 @@ imageRedefiningdata(docs){
   var img;
  for(var i=0;i<docs.length;i++){
   img = this.b64toBlob(docs[i].imagePath, docs[i].imageType, 512);
-  docs[i].imagePath = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(img));
+  // docs[i].imagePath = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(img));
+  this.conversionToImage(URL.createObjectURL(img), docs[i]);
  }
  this.createUserData=docs;
   
 }
 
+
+conversionToImage(blobUrl, dtaVal){
+//var blob = new Blob(["Hello, world!"], { type: 'text/plain' });
+//var blobUrl = URL.createObjectURL(blob);
+
+var xhr = new XMLHttpRequest;
+xhr.responseType = 'blob';
+
+xhr.onload = function() {
+   var recoveredBlob = xhr.response;
+
+   var reader = new FileReader;
+
+   reader.onload = function() { debugger;
+     var blobAsDataUrl = reader.result;
+     dtaVal.imagePath= blobAsDataUrl;
+   };
+
+   reader.readAsDataURL(recoveredBlob);
+};
+
+xhr.open('GET', blobUrl);
+xhr.send();
+}
 
 
 // createNewUser(fileString, MIMEType){

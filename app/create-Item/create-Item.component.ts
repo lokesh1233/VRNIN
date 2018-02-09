@@ -22,7 +22,7 @@ constructor(public snackBar: MatSnackBar, private router: Router, private route:
 
       let id = this.route.snapshot.paramMap.get('id');
       if(id != 'A'){
-        this.createUserData = this.itemComponent.getItem(id);
+     //   this.createUserData = this.itemComponent.getItem(id);
       }
 
 
@@ -66,6 +66,9 @@ createNewUser(fileString, MIMEType){
   window.HostelUserDB.collection('ItemList').insertOne(dta).then(function(){
     that.openSnackBar('Succesflly '+ dta.ItemName + ' item created', '');
     that.router.navigate(['/master']);
+    }).catch(err => {
+      console.error(err)
+      that.openSnackBar(err, '');
     });   
 }
 

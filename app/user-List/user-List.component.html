@@ -10,14 +10,22 @@
 
 <div class="example-container">
    <mat-nav-list>
-    <mat-list-item *ngFor="let data of createUserData" (click)="onRowClicked(item)">
+    <mat-list-item *ngFor="let data of createUserData" (click)="onRowClicked(data)">
 <div class="flexDisplayClass">
   <img mat-card-avatar src="{{data.imagePath}}" alt="">
 <div>
   <h5 class="marginclass">  {{ data.fullName }} </h5>
-  <h5 class="marginclass">Rs.  {{ data.Amount }}</h5>
+  <h5 class="marginclass">Rs.  {{ data.fullfillmentAmt }}</h5>
 </div>
   </div> 
     </mat-list-item>
   </mat-nav-list> 
 </div>
+
+<div class="button-row positionPlace">
+    <a routerLink="/createUser/A" >
+    <button mat-mini-fab>
+      <mat-icon>add</mat-icon>
+    </button>
+    </a>
+  </div>
