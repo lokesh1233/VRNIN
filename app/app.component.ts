@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,35 +6,21 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   constructor(private router: Router) {}
+    
+    ngOnInit(){ 
+      this.loadVRNMasterList()
+       }
 
-  onRowClicked(evt){
-
-    // if(evt.ind == 'X'){
-    //   this.router.navigate([evt.router, 'A']);
-    // }else{
-      this.router.navigate([evt.router]);
-    // }
-   // drawer.toggle()
+  loadVRNMasterList(){
+    var that = this;
+    window.VRNUserDB.collection('VRNHeader').find({}).execute().then(docs => {
+      that.createUserData=docs;
+    });
   }
 
-  createUserData = [{
-    VrnNo:'1000000123',
-    VhcleNo: 'MH67AD1234',
-    status:'01OutBound',
-    class:'mat-list-item selectedIndex'
-  },{
-    VrnNo:'1000000124',
-    VhcleNo: 'MH67AD1235',
-    status:'51OutBound',
-    class:'mat-list-item'
-  },{
-    VrnNo:'1000000125',
-    VhcleNo: 'MH67AD1236',
-    status:'01OutBound',
-    class:'mat-list-item'
-  }]
+  createUserData = []
 
   onVRNSelected(data){
     var dta = this.createUserData;
@@ -42,34 +28,8 @@ export class AppComponent {
       dta[i].class="mat-list-item"
     }
     data.class="mat-list-item selectedIndex";
-
-
     this.router.navigate(['/detail']);
-  }
-
-  createHomeData = [{
-    icon:"home",
-    name:"My Home",
-    router:"/master",
-    ind:""
-  },{   
-    icon:"account_circle",
-    name:"Users",
-    router:"/userList",
-    ind:"X"
-  },{
-    icon:"store",
-    name:"Items",
-    router:"/itemList",
-    ind:"X"
-  },{
-    icon:"equalizer",
-    name:"Report",
-    router:"/Report",
-    ind:""
-  }]
-
-  
+  }  
 
 }
 

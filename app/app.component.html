@@ -8,24 +8,23 @@
                     </mat-toolbar-row>
                     </mat-toolbar>
                 <!-- <form class="example-form"> -->
-                    <mat-form-field class="example-full-width">
+                     <mat-form-field class="example-full-width"> 
                       <input matInput placeholder="Search" type="search">
-                    </mat-form-field>
+                     </mat-form-field>
                     
-                    <section>
                 <mat-nav-list>
                     <mat-list-item *ngFor="let data of createUserData"  (click)="onVRNSelected(data)"   class="{{data.class}} heightStable">
                <div>
-                        <h5 class="marginTitle">{{data.VrnNo}}</h5>
-                        <div>
-                 <span class="marginTitle">Vehicle No. {{data.VhcleNo}}</span>
-                </div><div>
-                 <span class="marginTitle">{{data.status}}</span>
-                </div>
+                        <h4 class="marginTitle">VRN. {{data.VRN}}</h4>
+                        
+                 <span class="marginTitle">Vehicle No. {{data.VehicleNo}}</span>
+               
+                 <span class="marginTitle">{{data.Purpose}}</span>
+                
                 </div> 
                 </mat-list-item> 
                   </mat-nav-list>
-                </section>
+               
                   <div class="mainFooter button-row"> 
                   <!-- <mat-toolbar color="primary">
                         <mat-toolbar-row>
