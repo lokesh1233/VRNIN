@@ -40,12 +40,8 @@ import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {CdkTableModule} from '@angular/cdk/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MasterComponent }   from './master/master.component';
-import { RentDetailComponent }   from './rent-detail/rent-detail.component';
-import { CreateUserComponent }   from './create-user/create-user.component';
-import { CreateItemComponent }   from './create-Item/create-Item.component';
-import { ItemListComponent }   from './item-List/item-List.component';
-import { UserListComponent }   from './user-List/user-List.component';
+import { DetailComponent }   from './detail/detail.component';
+import { CreateVRNComponent }   from './create-vrn/create-vrn.component';
 import { AppRoutingModule }     from './app-routing.module';
 @NgModule({
   imports: [
@@ -121,14 +117,10 @@ import { AppRoutingModule }     from './app-routing.module';
   ],
   declarations: [
     AppComponent,
-    MasterComponent,
-    RentDetailComponent,
-    CreateUserComponent,
-    CreateItemComponent,
-    ItemListComponent,
-    UserListComponent
+    DetailComponent,
+    CreateVRNComponent
   ],
-  providers: [ MasterComponent, ItemListComponent, UserListComponent ],
+  providers: [ DetailComponent, AppComponent ],
   bootstrap: [ AppComponent ]
 })
 

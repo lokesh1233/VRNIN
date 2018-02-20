@@ -19,6 +19,34 @@ export class AppComponent {
    // drawer.toggle()
   }
 
+  createUserData = [{
+    VrnNo:'1000000123',
+    VhcleNo: 'MH67AD1234',
+    status:'01OutBound',
+    class:'mat-list-item selectedIndex'
+  },{
+    VrnNo:'1000000124',
+    VhcleNo: 'MH67AD1235',
+    status:'51OutBound',
+    class:'mat-list-item'
+  },{
+    VrnNo:'1000000125',
+    VhcleNo: 'MH67AD1236',
+    status:'01OutBound',
+    class:'mat-list-item'
+  }]
+
+  onVRNSelected(data){
+    var dta = this.createUserData;
+    for(var i=0;i<dta.length;i++){
+      dta[i].class="mat-list-item"
+    }
+    data.class="mat-list-item selectedIndex";
+
+
+    this.router.navigate(['/detail']);
+  }
+
   createHomeData = [{
     icon:"home",
     name:"My Home",

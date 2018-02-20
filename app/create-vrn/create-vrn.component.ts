@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 import { Router, ActivatedRoute, ParamMap  } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import { UserListComponent }   from '../user-List/user-List.component';
+import { AppComponent }   from '../app.component';
 
 @Component({
    selector: 'app-create-user',
-   templateUrl: './create-user.component.html',
-   styleUrls: ['./create-user.component.css']
+   templateUrl: './create-vrn.component.html',
+   styleUrls: ['./create-vrn.component.css']
  })
-export class CreateUserComponent {
-  constructor(public snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute, public userComponent: UserListComponent) {}
+export class CreateVRNComponent {
+  constructor(public snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute, public appComponent: AppComponent) {}
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
@@ -32,8 +32,8 @@ export class CreateUserComponent {
  createUserData = {
   owner_id:"",
    fullfillmentAmt:"",
+   creationDate:new Date(),
    userID:"",
-   imageType:"",
    fullName:"",
    joiningDte:"",
    mobileNo:"",
@@ -46,8 +46,7 @@ export class CreateUserComponent {
       value:"Hostel/PG"
       },{
       value:"Outer"
-      }],
- imagePath:""
+      }]
 }
 
 
@@ -79,18 +78,38 @@ onSubmit(){
 
 createNewUser(fileString, MIMEType){
   let dta = this.createUserData;
-  dta.imagePath = fileString;
+  //dta.imagePath = fileString;
   dta.fullfillmentAmt = dta.RntAmount
-  dta.imageType = MIMEType;
-  let id = window.HostelClient.authedId();
+  dta.creationDate = new Date();
+ // dta.imageType = MIMEType;
+  let id = new Date().getTime().toString();
   dta.userID = id;
   delete dta.hstlTypes;
   dta.owner_id= id;
   var that = this;
   window.HostelUserDB.collection('UserList').insertOne(dta).then(function(){
     that.openSnackBar('Succesflly user '+ dta.fullName + ' created', '');
+    that.fileUpload(fileString, id, MIMEType);
     that.router.navigate(['/master']);
     });   
+}
+
+fileUpload(fileString, id, MIMEType){
+  if(fileString != ''){
+    var imgData = {
+      imageData: fileString,
+      imageId: id,
+      imageType: MIMEType,
+      itemId: '',
+      owner_id: id,
+      userId: id
+    }
+  var that= this;
+    window.HostelUserDB.collection('ImageData').insertOne(imgData).then(function(){
+      that.openSnackBar('image uploaded succesfully', '');
+      });  
+  }
+
 }
 
  refurnfileXString(fileUpload){
@@ -106,7 +125,7 @@ createNewUser(fileString, MIMEType){
  	//  // decode base64 string, remove space for IE compatibility
  	  var reader = new FileReader();
  	  reader.onload = function(readerEvt) {
- 	//		// This is done just for the proof of concept
+ 	//	// This is done just for the proof of concept
  	    var binaryString = readerEvt.target.result;
        var base64 = btoa(binaryString);
        that.createNewUser(base64, MIMEType);

@@ -53,7 +53,7 @@ import 'core-js/es7/reflect';
 //import 'web-animations-js';
 
 
-import 'hammerjs';
+//import 'hammerjs';
 
 /***************************************************************************************************
  * Zone JS is required by Angular itself.

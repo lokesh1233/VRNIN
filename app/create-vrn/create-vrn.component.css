@@ -1,3 +1,22 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.footerPOsition{
+  position: fixed;
+  bottom: 0;
+}
+
+.footerPOsition > button{
+  -webkit-box-flex: 1;
+  flex: 1 1 auto;
+}
+
 .example-icon {
   padding: 0 14px;
 }
@@ -43,7 +62,7 @@
 
 .inputMargin{
   width: 50px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .ruppeeMargin{
@@ -87,10 +106,18 @@
   flex: 1 1 auto;
 } 
 
- .mat-nav-list .mat-list-item.mat-list-item-focus, .mat-nav-list .mat-list-item:hover{
+ /* .mat-nav-list .mat-list-item.mat-list-item-focus, .mat-nav-list .mat-list-item:hover{
   background: yellowgreen;
-} 
+}  */
 
 .displayNone{
   display: none;
+}
+
+.heightStable{
+  height: 60px;
+}
+
+.zeromarginStable{
+  margin: 0%;
 }
