@@ -102,3 +102,12 @@
 .zeromarginStable{
   margin: 0%;
 }
+
+.example-form {
+  margin: 15px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}

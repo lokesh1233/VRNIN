@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap  } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,28 @@ export class AppComponent implements OnInit{
   constructor(private router: Router) {}
     
     ngOnInit(){ 
-      this.loadVRNMasterList()
+      this.loadVRNMasterList();
+     // window.asd = this;
+      //this.webhhokURL();
+       }
+
+
+       webhhokURL(){
+         debugger;
+         var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() { debugger;
+        if (this.readyState == 4 && this.status == 200) {
+        // Typical action to be performed when the document is ready:
+        document.getElementById("demo").innerHTML = xhttp.responseText;
+      }
+    };
+xhttp.open("GET", "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/vrn_apps-iejcy/service/VRNCreate/incoming_webhook/VRNCreateWebHook", true);
+
+xhttp.setRequestHeader('signature','test');
+xhttp.setRequestHeader('Accept','application/json');
+xhttp.setRequestHeader('Access-Control-Allow-Origin','*');
+xhttp.setRequestHeader('X-Hook-Signature','test');
+xhttp.send();
        }
 
   loadVRNMasterList(){
@@ -28,8 +49,15 @@ export class AppComponent implements OnInit{
       dta[i].class="mat-list-item"
     }
     data.class="mat-list-item selectedIndex";
-    this.router.navigate(['/detail']);
+    this.router.navigate(['/detail',data.VRN]);
   }  
+
+  getMasterItem(id: number | string){
+    return this.createUserData
+        .map(data => {
+          debugger;
+        });
+  }
 
 }
 

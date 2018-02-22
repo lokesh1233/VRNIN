@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatSnackBar, MatTableDataSource} from '@angular/material';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import { AppComponent }   from '../app.component';
 
 @Component({
   selector: 'app-master',
@@ -7,15 +9,24 @@ import {MatSnackBar, MatTableDataSource} from '@angular/material';
   styleUrls: [ './detail.component.css' ]
 })
 export class DetailComponent implements OnInit {
-  constructor(public snackBar: MatSnackBar) {}
+  constructor(public snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute, public appComponent: AppComponent) {}
   
   ngOnInit(){ 
   //  this.readListData('UserList', 'createUserData');
   //  this.readListData('ItemList', 'createItemData');
   //  this.readListData('RentDetails', 'ELEMENT_DATA');
     //this.readRentDetails();
+
+    let id = this.route.snapshot.paramMap.get('id');
+    if(id != 'A'){
+      this.vrnMaterData = this.appComponent.getMasterItem(id);
+    }
+
+    this.loadVRNDetail(id);
+  
   }
 
+  vrnMaterData = {};
   selectedIndex = null;
   selectedUser = null;
   readUserItemData = 0;
@@ -26,6 +37,16 @@ export class DetailComponent implements OnInit {
   userIds = [];
   itemIds = []; 
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+
+
+  loadVRNDetail(id){
+    debugger;
+    var that = this;
+    window.VRNUserDB.collection('VRNDetail').find({VRN:Number(id)}).execute().then(docs => {
+      that.createUserData=docs;
+    });
+
+  }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

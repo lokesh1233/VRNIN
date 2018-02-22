@@ -6,8 +6,8 @@ import { CreateVRNComponent }   from './create-vrn/create-vrn.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/detail', pathMatch: 'full' },
-  { path: 'detail', component: DetailComponent },
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: 'detail/:id', component: DetailComponent },
   { path: 'createvrn', component: CreateVRNComponent }
 ];
 

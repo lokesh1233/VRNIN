@@ -114,7 +114,10 @@
   .heightStable{
     height: 100px !important;
   }
-  
+
+  .heightStable > div{
+  border-bottom: 1px solid #000;
+  }
   .zeromarginStable{
     margin: 0%;
   }

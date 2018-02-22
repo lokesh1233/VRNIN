@@ -1,70 +1,78 @@
 <div class="example-container">
     <form class="example-form">
-  <mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Mode of Transport" value="Courier Air" disabled='true'>
+          </mat-form-field>
+      <!-- <mat-form-field>
     <mat-select placeholder="Mode of Transport">
         <mat-option value="option">Road Truck</mat-option>
         <mat-option value="option">Courier Air</mat-option>
-      <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
-        {{ food.viewValue }}
-      </mat-option> -->
       <mat-option>
         test
       </mat-option>
     </mat-select>
-  </mat-form-field>
+  </mat-form-field> -->
 
-  <mat-radio-group placeholder="Vehicle Status">
+  <!-- <mat-radio-group placeholder="Vehicle Status">
     <mat-radio-button value="1">Loaded</mat-radio-button>
     <mat-radio-button value="2">Empty</mat-radio-button>
-  </mat-radio-group>
+  </mat-radio-group> -->
+
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="Vehicle Status" value="Empty" disabled='true'>
+    </mat-form-field>
  
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Enter Seal No." value="">
+    <input matInput placeholder="Seal No." value="23" disabled='true'>
   </mat-form-field>
 
 
   <mat-form-field class="example-full-width">
-      <input matInput placeholder="Enter Vehicle No." value="">
+      <input matInput placeholder="Vehicle No." value="GA01KA1111" disabled='true'>
     </mat-form-field>
 
 
   <mat-form-field class="example-full-width">
-      <input matInput placeholder="Fleet Type" value="">
+      <input matInput placeholder="Fleet Type" value="" disabled='true'>
     </mat-form-field>
 
 
   <mat-form-field class="example-full-width">
-      <input matInput placeholder="Enter Transporter/Agency Name." value="">
+      <input matInput placeholder="Transporter/Agency Name." value="RJIL" disabled='true'>
   </mat-form-field>
 
-    <mat-radio-group placeholder="Seal Condition">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Seal Condition" value="Intact" disabled='true'>
+</mat-form-field>
+
+    <!-- <mat-radio-group placeholder="Seal Condition">
         <mat-radio-button value="1">Intact </mat-radio-button>
         <mat-radio-button value="2">Damaged</mat-radio-button>
         <mat-radio-button value="3">No Seal</mat-radio-button>
-    </mat-radio-group>
+    </mat-radio-group> -->
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="No of Boxes" value="">
+        <input matInput placeholder="No of Boxes" value="4" disabled='true'>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Driver License No." value="">
+        <input matInput placeholder="Driver License No." value="4567324" disabled='true'>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Driver/Pickup Person Name." value="">
+        <input matInput placeholder="Driver/Pickup Person Name." value="Ram" disabled='true'>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Mobile No." value="">
+        <input matInput placeholder="Mobile No." value="" disabled='true'>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="AWB no./Docker no./LR no." value="">
+        <input matInput placeholder="AWB no./Docker no./LR no." value="" disabled='true'>
     </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput placeholder="In Remarks"></textarea>
+    <textarea matInput placeholder="In Remarks" value='' disabled='true'></textarea>
   </mat-form-field>
     </form>
 </div>
