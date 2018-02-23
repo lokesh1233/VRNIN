@@ -17,40 +17,87 @@ export class CreateVRNComponent {
       duration: 2000,
     });
   }
+
+  selectedIndex=0;
+  TransModes=[];
   ngOnInit() {
-  let id = this.route.snapshot.paramMap.get('id');
-  if(id != 'A'){
-  //  this.createUserData = this.userComponent.getItem(id);
-  }
+ 
   var that = this;
 
   window.VRNUserDB.collection('Params').find({'Domain':'TrnsprtMode'},{'modeNum':1,'modeTxt':1 }).execute().then(docs => {
     that.TransModes =  docs;
   })
 
-  window.VRNUserDB.collection('Params').find({'Domain':'TrnsprtMode'},{'modeNum':1,'modeTxt':1 }).execute().then(docs => {
-    that.TransModes =  docs;
-  })
-  
+ 
   }
   
  createVRNData = {
-  owner_id:"",
-  vrnnum:"",
-  vehnum:"",
-  purpose:"",
-  transmode:"",
-  vehstat:"",
-  sealNo:"",
-  fleetType:"",
-  Transporter:"",
-  sealCond:"",
-  noOfBoxes:"",
-  LicNo:"",
-  DriverName:"",
-  MobNo:"",
-  LrNo:"",
-  remarks:""
+  VRN:"100000900",
+  MODEOFTRANSPORT:"RD",
+  PURPOSE:"",
+  SITE:"",
+  VEHICLENUM:"",
+  DRIVERNAME:"",
+  DRIVERNUM:"",
+  FLEETTYPE:"",
+  IDPROOFNUM:"",
+  IDPROOFTYPE:"",
+  LRNUM:"",
+  LRDATE:new Date(),
+  LICENSENUM:"",
+  VRNSTATUS:"",
+  CHANGEDBY:"Bhaskar",
+  CHANGEDON:new Date(),
+  CREATEDBY:'Bhaskar',
+  CREATEDON:new Date(),
+  TRANSPORTER:"",
+  TRANSPORTERCODE:""
+}
+
+
+createVRNDtlData = {
+  VRN:"100000900",
+  CHECKINOUT:"I",  
+  VEHICLESTATUS:"L",
+  SEALCONDITION:"I",
+  REMARKS:"",
+  NUMOFBOXES:"",
+  SEALNUM:"",
+  VEHICLESECURITYTIME: new Date(),
+  VEHICLESECURITYDATE: new Date(),
+  VEHICLECHECKINDATE: new Date(),
+  VEHICLECHECKINTIME: new Date(),
+  VRNCHECKINBY: 'Bhaskar'
+}
+
+licenseSelection(){
+  let LcnseNo = this.createVRNData.LICENSENUM;
+  if(LcnseNo == ""){
+    this.openSnackBar('Enter License Number', '');
+     return;
+  }
+
+  var that = this;
+  window.VRNUserDB.collection('License').find({'Licencenumber':Number(LcnseNo)},{'Lastname': 1,'Telephone': 1 }).execute().then(docs => {
+    that.createVRNData.DRIVERNAME = docs.length>0?docs[0].Lastname:"";
+    that.createVRNData.DRIVERNUM = docs.length>0?docs[0].Telephone:"";
+  })
+  
+}
+
+vehicleSelection(){
+  let vhcle = this.createVRNData.VEHICLENUM;
+  if(vhcle == ""){
+    this.openSnackBar('Enter Vehicle Number', '');
+     return;
+  }
+
+  var that = this;
+  window.VRNUserDB.collection('Vehicle').find({'VehicleNumber':vhcle},{'Vendor': 1 }).execute().then(docs => {
+    that.createVRNData.TRANSPORTER = docs.length>0?docs[0].Vendor:"";
+    that.createVRNData.TRANSPORTERCODE = docs.length>0?docs[0].Vendor:"";
+  })
+  
 }
 
 
@@ -59,10 +106,26 @@ switchHstl(evt){
 }
 
 onSubmit(){
-  // window.VRNUserDB.collection('VRNHeader').insertOne(this.createVRNData).then(function(){
-  //   debugger;
-  // })
+ 
+debugger;
 
+this.createVRNData.PURPOSE = this.selectedIndex == 0 ? "Inbound" : "Outbound"; 
+var that = this;
+ window.VRNUserDB.collection('VRNHeader').insertOne(this.createVRNData).then(function(){
+  that.openSnackBar('Succesflly placed VRN', '');
+
+  debugger;
+});  
+
+window.VRNUserDB.collection('VRNDetail').insertOne(this.createVRNDtlData).then(function(){
+ debugger;
+});  
+
+}
+
+VRNCheckIn(){
+  this.createVRNData.VRNSTATUS = "X";
+  this.onSubmit();
 }
 
   // window.HostelUserDB.collection('UserList').insertOne(dta).then(function(){

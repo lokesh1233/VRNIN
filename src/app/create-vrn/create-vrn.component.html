@@ -1,137 +1,72 @@
-<mat-tab-group>
+<mat-tab-group [(selectedIndex)] = "selectedIndex">
   <mat-tab label="Delivery (Inbound)">
-    <div class="example-container">
-      <!-- <form class="example-form"> -->
-    <mat-form-field>
-      <mat-select placeholder="Mode of Transport"  [(ngModel)]="createVRNData.transmode"><!--selected="{{createVRNData.transmode}}"-->
+  </mat-tab>
+  <mat-tab label="Pickup (Outbound)">
+  </mat-tab>
+</mat-tab-group>
+<div class="example-container example-form">
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Mode of Transport"  [(value)]="createVRNData.MODEOFTRANSPORT" [(ngModel)]="createVRNData.MODEOFTRANSPORT"><!--selected="{{createVRNData.transmode}}"-->
           <!-- <mat-option value="option">Road Truck</mat-option>
           <mat-option value="option">Courier Air</mat-option> -->
-        <mat-option *ngFor="let mode of TransModes" [value]="mode.modeTxt">
+        <mat-option *ngFor="let mode of TransModes" [value]="mode.modeNum" >
           {{mode.modeTxt}}
         </mat-option>
         <!-- <mat-option>test</mat-option> -->
       </mat-select>
     </mat-form-field>
     
-    <mat-radio-group placeholder="Vehicle Status"  [(ngModel)]="createVRNData.vehstat"><!--checked="{{createVRNData.vehstat}}"-->
-      <mat-radio-button value="1">Loaded</mat-radio-button>
-      <mat-radio-button value="2">Empty</mat-radio-button>
-    </mat-radio-group>
+    <!-- <mat-radio-group placeholder="Vehicle Status"  [(value)]="createVRNDtlData.VEHICLESTATUS" [(ngModel)]="createVRNDtlData.VEHICLESTATUS">
+      <mat-radio-button value="L">Loaded</mat-radio-button>
+      <mat-radio-button value="E">Empty</mat-radio-button>
+    </mat-radio-group> -->
     
-    <mat-form-field>
-      <input matInput placeholder="Enter Seal No." value="{{createVRNData.sealNo}}" [(ngModel)]="createVRNData.sealNo">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter Seal No." value="{{createVRNDtlData.SEALNUM}}" [(ngModel)]="createVRNDtlData.SEALNUM">
     </mat-form-field>
     
     
-    <mat-form-field>
-        <input matInput placeholder="Enter Vehicle No." value="{{createVRNData.vehnum}}" [(ngModel)]="createVRNData.vehnum">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Enter Vehicle No." (change) = 'vehicleSelection()' value="{{createVRNData.VEHICLENUM}}" [(ngModel)]="createVRNData.VEHICLENUM">
       </mat-form-field>
     
-    <mat-form-field>
-        <input matInput placeholder="Enter Transporter/Agency Name." value="{{createVRNData.Transporter}}" [(ngModel)]="createVRNData.Transporter">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Enter Transporter/Agency Name." value="{{createVRNData.TRANSPORTER}}" [(ngModel)]="createVRNData.TRANSPORTER">
     </mat-form-field>
     
-      <mat-radio-group placeholder="Seal Condition" value="{{createVRNData.sealCond}}" [(ngModel)]="createVRNData.sealCond">
-          <mat-radio-button value="1">Intact </mat-radio-button>
-          <mat-radio-button value="2">Damaged</mat-radio-button>
-          <mat-radio-button value="3">No Seal</mat-radio-button>
-      </mat-radio-group>
+      <!-- <mat-radio-group placeholder="Seal Condition" [(value)]="createVRNDtlData.SEALCONDITION" [(ngModel)]="createVRNDtlData.SEALCONDITION">
+          <mat-radio-button value="I">Intact </mat-radio-button>
+          <mat-radio-button value="D">Damaged</mat-radio-button>
+          <mat-radio-button value="N">No Seal</mat-radio-button>
+      </mat-radio-group> -->
     
       <mat-form-field class="example-full-width">
-          <input matInput placeholder="No of Boxes" value="{{createVRNData.noOfBoxes}}" [(ngModel)]="createVRNData.noOfBoxes">
+          <input matInput placeholder="No of Boxes" value="{{createVRNDtlData.NUMOFBOXES}}" [(ngModel)]="createVRNDtlData.NUMOFBOXES">
       </mat-form-field>
     
       <mat-form-field class="example-full-width">
-          <input matInput placeholder="Driver License No." value="{{createVRNData.LicNo}}" [(ngModel)]="createVRNData.LicNo">
+          <input matInput placeholder="Driver License No." (change)="licenseSelection()"  value="{{createVRNData.LICENSENUM}}" [(ngModel)]="createVRNData.LICENSENUM">
       </mat-form-field>
     
       <mat-form-field class="example-full-width">
-          <input matInput placeholder="Driver/Pickup Person Name." value="{{createVRNData.DriverName}}" [(ngModel)]="createVRNData.DriverName">
+          <input matInput placeholder="Driver/Pickup Person Name." value="{{createVRNData.DRIVERNAME}}" [(ngModel)]="createVRNData.DRIVERNAME">
       </mat-form-field>
     
       <mat-form-field class="example-full-width">
-          <input matInput placeholder="Mobile No." value="{{createVRNData.MobNo}}" [(ngModel)]="createVRNData.MobNo">
+          <input matInput placeholder="Mobile No." value="{{createVRNData.DRIVERNUM}}" [(ngModel)]="createVRNData.DRIVERNUM">
       </mat-form-field>
   
       <mat-form-field class="example-full-width">
-          <input matInput placeholder="AWB no./Docker no./LR no." value="{{createVRNData.LrNo}}" [(ngModel)]="createVRNData.LrNo">
+          <input matInput placeholder="AWB no./Docker no./LR no." value="{{createVRNData.LRNUM}}" [(ngModel)]="createVRNData.LRNUM">
       </mat-form-field>
     
-    <mat-form-field>
-      <textarea matInput placeholder="In Remarks" value="{{createVRNData.remarks}}" [(ngModel)]="createVRNData.remarks"></textarea>
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="In Remarks" value="{{createVRNDtlData.REMARKS}}" [(ngModel)]="createVRNDtlData.REMARKS"></textarea>
     </mat-form-field>
       <!-- </form> -->
+      <div class="mainFooter button-row">
+        <button mat-raised-button (click)="onSubmit()" color="primary">Report-In</button>
+        <button mat-raised-button (click)="VRNCheckIn()" color="accent">Check-In</button>
+        </div>
     </div>
-  </mat-tab>
-  <mat-tab label="Pickup (Outbound)">
-    <div class="example-container">
-      <!-- <form class="example-form"> -->
-    <mat-form-field>
-      <mat-select placeholder="Mode of Transport">
-          <mat-option value="option">Road Truck</mat-option>
-          <mat-option value="option">Courier Air</mat-option>
-        <!-- <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
-        </mat-option> -->
-        <mat-option>
-          test
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    
-    <mat-radio-group placeholder="Vehicle Status">
-      <mat-radio-button value="1">Loaded</mat-radio-button>
-      <mat-radio-button value="2">Empty</mat-radio-button>
-    </mat-radio-group>
-    
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Enter Seal No." value="">
-    </mat-form-field>
-    
-    
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Enter Vehicle No." value="">
-      </mat-form-field>
-    
-    
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Fleet Type" value="">
-      </mat-form-field>
-    
-    
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Enter Transporter/Agency Name." value="">
-    </mat-form-field>
-  
-      <mat-form-field class="example-full-width">
-          <input matInput placeholder="No of Boxes" value="">
-      </mat-form-field>
-    
-      <mat-form-field class="example-full-width">
-          <input matInput placeholder="Driver License No." value="">
-      </mat-form-field>
-    
-      <mat-form-field class="example-full-width">
-          <input matInput placeholder="Driver/Pickup Person Name." value="">
-      </mat-form-field>
-    
-      <mat-form-field class="example-full-width">
-          <input matInput placeholder="Mobile No." value="">
-      </mat-form-field>
-    
-      <mat-form-field class="example-full-width">
-          <input matInput placeholder="AWB no./Docker no./LR no." value="">
-      </mat-form-field>
-    
-    <mat-form-field>
-      <textarea matInput placeholder="In Remarks"></textarea>
-    </mat-form-field>
-      <!-- </form> -->
-    </div>
-  </mat-tab>
-  </mat-tab-group>
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <button (click)="onSubmit()">Submit</button>
-    </mat-toolbar-row>
-    </mat-toolbar>
+ 

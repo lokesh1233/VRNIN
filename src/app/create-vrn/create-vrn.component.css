@@ -21,6 +21,11 @@
   padding: 0 14px;
 }
 
+.example-form {
+  margin: 15px;
+  width: 100%;
+}
+
 .example-spacer {
   flex: 1 1 auto;
 }
@@ -120,4 +125,28 @@
 
 .zeromarginStable{
   margin: 0%;
+}
+
+.mainFooter{
+  position: fixed !important;
+  top: 85%;
+  left: 85%;
+
+}
+
+
+/* Structure */
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.widthContent{
+  width: 95%;
+  height: 95%;
+}
+
+.example-full-width {
+  width: 100%;
 }
