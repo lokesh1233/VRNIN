@@ -4,7 +4,7 @@
   <mat-tab label="Pickup (Outbound)">
   </mat-tab>
 </mat-tab-group>
-<div class="example-container example-form">
+<div class="example-container example-form widthContent">
     <mat-form-field class="example-full-width">
       <mat-select placeholder="Mode of Transport"  [(value)]="createVRNData.MODEOFTRANSPORT" [(ngModel)]="createVRNData.MODEOFTRANSPORT"><!--selected="{{createVRNData.transmode}}"-->
           <!-- <mat-option value="option">Road Truck</mat-option>
@@ -16,10 +16,10 @@
       </mat-select>
     </mat-form-field>
     
-    <!-- <mat-radio-group placeholder="Vehicle Status"  [(value)]="createVRNDtlData.VEHICLESTATUS" [(ngModel)]="createVRNDtlData.VEHICLESTATUS">
+    <mat-radio-group placeholder="Vehicle Status"  [(value)]="createVRNDtlData.VEHICLESTATUS" [(ngModel)]="createVRNDtlData.VEHICLESTATUS"><!--checked="{{createVRNData.vehstat}}"-->
       <mat-radio-button value="L">Loaded</mat-radio-button>
       <mat-radio-button value="E">Empty</mat-radio-button>
-    </mat-radio-group> -->
+    </mat-radio-group>
     
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Enter Seal No." value="{{createVRNDtlData.SEALNUM}}" [(ngModel)]="createVRNDtlData.SEALNUM">
@@ -34,11 +34,11 @@
         <input matInput placeholder="Enter Transporter/Agency Name." value="{{createVRNData.TRANSPORTER}}" [(ngModel)]="createVRNData.TRANSPORTER">
     </mat-form-field>
     
-      <!-- <mat-radio-group placeholder="Seal Condition" [(value)]="createVRNDtlData.SEALCONDITION" [(ngModel)]="createVRNDtlData.SEALCONDITION">
+      <mat-radio-group placeholder="Seal Condition" [(value)]="createVRNDtlData.SEALCONDITION" [(ngModel)]="createVRNDtlData.SEALCONDITION">
           <mat-radio-button value="I">Intact </mat-radio-button>
           <mat-radio-button value="D">Damaged</mat-radio-button>
           <mat-radio-button value="N">No Seal</mat-radio-button>
-      </mat-radio-group> -->
+      </mat-radio-group>
     
       <mat-form-field class="example-full-width">
           <input matInput placeholder="No of Boxes" value="{{createVRNDtlData.NUMOFBOXES}}" [(ngModel)]="createVRNDtlData.NUMOFBOXES">
