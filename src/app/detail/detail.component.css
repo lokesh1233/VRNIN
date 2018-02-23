@@ -111,3 +111,15 @@
 .example-full-width {
   width: 100%;
 }
+
+.mainFooter{
+  position: fixed !important;
+  top: 85%;
+  left: 85%;
+
+}
+
+.widthContent{
+  width: 95%;
+  height: 95%;
+}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap  } from '@angular/router';
+import {MatSnackBar, MatTableDataSource} from '@angular/material';
+//import { DetailComponent }   from './detail/detail.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,7 @@ export class AppComponent implements OnInit{
     ngOnInit(){ 
       this.loadVRNMasterList();
      // window.asd = this;
-      //this.webhhokURL();
+    // this.webhhokURL();
        }
 
 
@@ -42,6 +44,7 @@ xhttp.send();
   }
 
   createUserData = []
+  selectedVRNData = {}
 
   onVRNSelected(data){
     var dta = this.createUserData;
@@ -49,14 +52,12 @@ xhttp.send();
       dta[i].class="mat-list-item"
     }
     data.class="mat-list-item selectedIndex";
+    this.selectedVRNData = data;
     this.router.navigate(['/detail',data.VRN]);
   }  
 
-  getMasterItem(id: number | string){
-    return this.createUserData
-        .map(data => {
-          debugger;
-        });
+  getMasterItem(){
+    return this.selectedVRNData;
   }
 
 }

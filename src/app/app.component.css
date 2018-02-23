@@ -11,7 +11,7 @@
   }
   
   .example-sidenav {
-    
+    width: 18%;
   }
 
   .example-icon {
@@ -31,11 +31,7 @@
     padding: 16px;
   }
   
-  .positionPlace{
-    position: fixed !important;
-    top: 85%;
-    left: 85%;
-  }
+ 
   
   .flexDisplayClass{
     display: flex;
@@ -133,4 +129,9 @@
     top: 85%;
     left: 75%;
 
+  }
+
+  .widthContent{
+    width: 95%;
+    height: 95%;
   }
