@@ -40,6 +40,9 @@ xhttp.send();
     var that = this;
     window.VRNUserDB.collection('VRNHeader').find({}).execute().then(docs => {
       that.createUserData=docs;
+      if(docs.length>0){
+        that.onVRNSelected(docs[0]);
+      }
     });
   }
 

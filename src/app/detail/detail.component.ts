@@ -30,9 +30,11 @@ export class DetailComponent implements OnInit {
     this.vrnMaterData = {};
     if(id != 'A'){
       this.vrnMaterData = this.appComponent.getMasterItem();
-      let vrnMast = this.vrnMaterData;
-      vrnMast.DepartureSeal1 = '';
-      vrnMast.SealCondition = '';
+      // this.vrnMaterData.VEHICLESTATUS = '';
+      // this.vrnMaterData.SEALCONDITION = '';
+      // this.vrnMaterData.REMARKS = '';
+      // this.vrnMaterData.NUMOFBOXES = '';
+      // this.vrnMaterData.SEALNUM = '';
     }
     this.loadVRNDetail(id);
   }
@@ -53,8 +55,15 @@ export class DetailComponent implements OnInit {
   loadVRNDetail(id){
     debugger;
     var that = this;
-    window.VRNUserDB.collection('VRNDetail').find({VRN:Number(id)}).execute().then(docs => {
-      that.createUserData=docs;
+    window.VRNUserDB.collection('VRNDetail').find({VRN:id}).execute().then(docs => {
+      var vrnMat = that.vrnMaterData;
+      if(docs.length>0){
+        vrnMat.VEHICLESTATUS = docs[0].VEHICLESTATUS;
+        vrnMat.SEALCONDITION = docs[0].SEALCONDITION;
+        vrnMat.REMARKS = docs[0].REMARKS;
+        vrnMat.NUMOFBOXES = docs[0].NUMOFBOXES;
+        vrnMat.SEALNUM = docs[0].SEALNUM;
+      }
     });
 
   }

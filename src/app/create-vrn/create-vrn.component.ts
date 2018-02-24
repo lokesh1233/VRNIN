@@ -32,7 +32,7 @@ export class CreateVRNComponent {
   }
   
  createVRNData = {
-  VRN:"100000900",
+  VRN:"",
   MODEOFTRANSPORT:"RD",
   PURPOSE:"",
   SITE:"",
@@ -56,7 +56,7 @@ export class CreateVRNComponent {
 
 
 createVRNDtlData = {
-  VRN:"100000900",
+  VRN:"",
   CHECKINOUT:"I",  
   VEHICLESTATUS:"L",
   SEALCONDITION:"I",
@@ -111,16 +111,23 @@ debugger;
 
 this.createVRNData.PURPOSE = this.selectedIndex == 0 ? "Inbound" : "Outbound"; 
 var that = this;
- window.VRNUserDB.collection('VRNHeader').insertOne(this.createVRNData).then(function(){
-  that.openSnackBar('Succesflly placed VRN', '');
 
+var cnt = window.VRNUserDB.collection('VRNHeader').count();
+setTimeout(function(){
+  debugger;
+that.createVRNData.VRN = (100000900 + cnt.__zone_symbol__value).toString(); 
+
+that.createVRNDtlData.VRN = that.createVRNData.VRN;
+ window.VRNUserDB.collection('VRNHeader').insertOne(that.createVRNData).then(function(){
+  that.openSnackBar('Succesflly placed VRN', '');
+  that.appComponent.loadVRNMasterList();
+  window.VRNUserDB.collection('VRNDetail').insertOne(that.createVRNDtlData).then(function(){
+    debugger;
+   });  
   debugger;
 });  
 
-window.VRNUserDB.collection('VRNDetail').insertOne(this.createVRNDtlData).then(function(){
- debugger;
-});  
-
+},1500)
 }
 
 VRNCheckIn(){
