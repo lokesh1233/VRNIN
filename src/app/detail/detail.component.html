@@ -1,6 +1,6 @@
 <div class="example-container example-form">
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Mode of Transport" value="{{vrnMaterData.MODEOFTRANSPORT}}" [(ngModel)]="vrnMaterData.ModeOfTransport" disabled='true'>
+            <input matInput placeholder="Mode of Transport" value="{{vrnMaterData.TrnsprtMode}}" [(ngModel)]="vrnMaterData.TrnsprtMode" disabled='true'>
           </mat-form-field>
       <!-- <mat-form-field>
     <mat-select placeholder="Mode of Transport">
@@ -76,7 +76,7 @@
   
 
   <div class="mainFooter button-row">
-      <button mat-raised-button color="accent">Check-In</button>
+      <button mat-raised-button color="accent" (click)='VRNCheckIn()'>Check-In</button>
       </div>
 </div>
 

@@ -16,7 +16,7 @@
       </mat-select>
     </mat-form-field>
     
-    <mat-radio-group placeholder="Vehicle Status"  [(value)]="createVRNDtlData.VEHICLESTATUS" [(ngModel)]="createVRNDtlData.VEHICLESTATUS"><!--checked="{{createVRNData.vehstat}}"-->
+    <mat-radio-group placeholder="Vehicle Status" required [(value)]="createVRNDtlData.VEHICLESTATUS" [(ngModel)]="createVRNDtlData.VEHICLESTATUS"><!--checked="{{createVRNData.vehstat}}"-->
       <mat-radio-button value="L">Loaded</mat-radio-button>
       <mat-radio-button value="E">Empty</mat-radio-button>
     </mat-radio-group>
