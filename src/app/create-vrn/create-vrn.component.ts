@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar, MatGridListModule } from '@angular/material';
 import { Router, ActivatedRoute, ParamMap  } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { AppComponent }   from '../app.component';
