@@ -38,10 +38,13 @@ xhttp.send();
 
   loadVRNMasterList(){
     var that = this;
-    window.VRNUserDB.collection('VRNHeader').find({}).execute().then(docs => {
+    window.VRNUserDB.collection('VRNHeader').find({VRNSTATUS:''}).execute().then(docs => {
+     docs = docs.sort(function(a, b){return b.VRN - a.VRN});
       that.createUserData=docs;
       if(docs.length>0){
         that.onVRNSelected(docs[0]);
+      }else{
+        that.onVRNSelected({VRN:'0'});
       }
     });
   }

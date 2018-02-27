@@ -9,36 +9,23 @@ import { FormsModule }    from '@angular/forms';
   templateUrl: './detail.component.html',
   styleUrls: [ './detail.component.css' ]
 })
+
 export class DetailComponent implements OnInit {
   constructor(public snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute, public appComponent: AppComponent) {
     window.thatDetail = this;
     this.route.params.subscribe(function(res){
-      debugger;
+      
       window.thatDetail.vrnMasterSelData();
     })
   }
   
   ngOnInit(){ 
-    
+    this.paramData();
   }
 
-
-
-
-  vrnMasterSelData(){
-    let id = this.route.snapshot.paramMap.get('id');
-    this.vrnMaterData = {};
-    if(id != 'A'){
-      this.vrnMaterData = this.appComponent.getMasterItem();
-      // this.vrnMaterData.VEHICLESTATUS = '';
-      // this.vrnMaterData.SEALCONDITION = '';
-      // this.vrnMaterData.REMARKS = '';
-      // this.vrnMaterData.NUMOFBOXES = '';
-      // this.vrnMaterData.SEALNUM = '';
-    }
-    this.loadVRNDetail(id);
-  }
-
+  VRNId = '';
+  roadTransport='';
+  paramValues={};
   vrnMaterData = {};
   selectedIndex = null;
   selectedUser = null;
@@ -51,15 +38,31 @@ export class DetailComponent implements OnInit {
   itemIds = []; 
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
+  vrnMasterSelData(){
+    let id = this.route.snapshot.paramMap.get('id');
+    this.vrnMaterData = {};
+    this.VRNId = id;
+    if(id != 'A'){
+      this.vrnMaterData = this.appComponent.getMasterItem();
+      this.roadTransport = this.vrnMaterData.MODEOFTRANSPORT;
+    //  this.vrnMaterData.MODEOFTRANSPORT = '';
+      // this.vrnMaterData.VEHICLESTATUS = '';
+      // this.vrnMaterData.SEALCONDITION = '';
+      // this.vrnMaterData.REMARKS = '';
+      // this.vrnMaterData.NUMOFBOXES = '';
+      // this.vrnMaterData.SEALNUM = '';
+    }
+    this.loadVRNDetail(id);
+  }
 
   loadVRNDetail(id){
-    debugger;
     var that = this;
     window.VRNUserDB.collection('VRNDetail').find({VRN:id}).execute().then(docs => {
       var vrnMat = that.vrnMaterData;
       if(docs.length>0){
-        vrnMat.VEHICLESTATUS = docs[0].VEHICLESTATUS;
-        vrnMat.SEALCONDITION = docs[0].SEALCONDITION;
+        vrnMat.VEHICLESTATUS = that.paramValues['VEHICLESTATUS'+docs[0].VEHICLESTATUS];
+        vrnMat.SEALCONDITION = that.paramValues['SEALCONDITION'+docs[0].SEALCONDITION];
+        vrnMat.TrnsprtMode = that.paramValues['TrnsprtMode'+that.roadTransport ];
         vrnMat.REMARKS = docs[0].REMARKS;
         vrnMat.NUMOFBOXES = docs[0].NUMOFBOXES;
         vrnMat.SEALNUM = docs[0].SEALNUM;
@@ -67,6 +70,34 @@ export class DetailComponent implements OnInit {
     });
 
   }
+
+  paramData(){
+    var that = this;  
+    window.VRNUserDB.collection('Params').find( {
+      $or : [{
+        Domain:'SEALCONDITION'
+        }, {
+        Domain: 'VEHICLESTATUS'
+        }, { 
+        Domain: 'TrnsprtMode'
+      }]}).execute().then(docs => {
+        var dat = {};
+        for(var i=0;i<docs.length;i++){
+          dat[docs[i]['Domain']+docs[i]['modeNum']] = docs[i]['modeTxt'];
+        }
+       that.paramValues = dat;
+   })
+  }
+
+  VRNCheckIn(){
+var that = this;
+    window.VRNUserDB.collection('VRNHeader').updateOne({VRN:this.VRNId},{ '$set': {VRNSTATUS : "X"}}).then(docs => {
+      debugger;
+      that.openSnackBar('Succesflly Checked In', '');
+  that.appComponent.loadVRNMasterList();
+    });
+  }
+  
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
