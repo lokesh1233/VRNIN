@@ -43,6 +43,8 @@ xhttp.send();
       that.createUserData=docs;
       if(docs.length>0){
         that.onVRNSelected(docs[0]);
+      }else{
+        that.onVRNSelected({VRN:'0'});
       }
     });
   }
