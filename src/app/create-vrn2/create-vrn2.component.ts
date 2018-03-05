@@ -58,7 +58,7 @@ var visible = true;
 sealConditionChange(){
   debugger;
 
- var vhcleSts =  this.createVRNDtlData.VEHICLESTATUS;
+ var vhcleSts =  this.createVRNDtlData.SEALCONDITION;
 var visible = true;
  if(vhcleSts == 'E'){
   visible = false;
