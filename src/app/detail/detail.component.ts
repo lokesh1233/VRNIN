@@ -93,6 +93,7 @@ export class DetailComponent implements OnInit {
 var that = this;
     window.VRNUserDB.collection('VRNHeader').updateOne({VRN:this.VRNId},{ '$set': {VRNSTATUS : "X"}}).then(docs => {
       debugger;
+      
       that.openSnackBar('Succesflly Checked In', '');
   that.appComponent.loadVRNMasterList();
     });

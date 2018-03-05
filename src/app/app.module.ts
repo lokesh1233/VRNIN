@@ -1,6 +1,6 @@
 import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 import { AppComponent }   from './app.component';
 
 import {
@@ -41,12 +41,13 @@ import {HttpClientModule} from '@angular/common/http';
 import {CdkTableModule} from '@angular/cdk/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetailComponent }   from './detail/detail.component';
-import { CreateVRNComponent }   from './create-vrn/create-vrn.component';
+import { CreateVRN2Component, CreateLicenseDialog }   from './create-vrn2/create-vrn2.component';
 import { AppRoutingModule }     from './app-routing.module';
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MatAutocompleteModule,
     MatButtonModule,
@@ -115,12 +116,14 @@ import { AppRoutingModule }     from './app-routing.module';
     MatToolbarModule,
     MatTooltipModule,
   ],
+  entryComponents: [CreateLicenseDialog],
   declarations: [
     AppComponent,
     DetailComponent,
-    CreateVRNComponent
+    CreateVRN2Component,
+    CreateLicenseDialog
   ],
-  providers: [ DetailComponent, AppComponent ],
+  providers: [ DetailComponent, AppComponent, CreateVRN2Component ],
   bootstrap: [ AppComponent ]
 })
 

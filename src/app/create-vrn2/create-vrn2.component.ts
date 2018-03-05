@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatSnackBar, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
@@ -10,20 +10,62 @@ import { AppComponent }   from '../app.component';
 
 @Component({
    selector: 'app-create-user',
-   templateUrl: './create-vrn.component.html',
-   styleUrls: ['./create-vrn.component.css']
+   templateUrl: './create-vrn2.component.html',
+   styleUrls: ['./create-vrn2.component.css']
  })
-export class CreateVRNComponent {
+export class CreateVRN2Component {
 
   agencyCtrl: FormControl;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
   filteredAgencies : Observable<any[]>;
-  constructor(public snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute, public appComponent: AppComponent, public dialog: MatDialog) {
+  constructor(public snackBar: MatSnackBar,private _formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute, public appComponent: AppComponent, public dialog: MatDialog) {
     this.agencyCtrl = new FormControl();
     var that = this;
     this.filteredAgencies = this.agencyCtrl.valueChanges.pipe(
       startWith(''),
       map(agency => that.filterAgencies(agency))
     );
+}
+
+MOPSelectedField = {};
+
+MOPSelectionChange(){
+  var valdtn = this.feildValidation;
+  //this.MOPSelectedField = {};
+  var selectedKey = this.createVRNData.MODEOFTRANSPORT;
+  for(var i in valdtn){
+    this.MOPSelectedField[i] = valdtn[i][selectedKey];
+  }
+
+}
+
+
+vehicleStatusChange(){
+  debugger;
+
+ var vhcleSts =  this.createVRNDtlData.VEHICLESTATUS;
+var visible = true;
+ if(vhcleSts == 'E'){
+  visible = false;
+ }
+ this.MOPSelectedField.sealCond  = visible;
+ this.MOPSelectedField.seal1  = visible;
+ this.MOPSelectedField.seal2  = visible;
+}
+
+
+sealConditionChange(){
+  debugger;
+
+ var vhcleSts =  this.createVRNDtlData.VEHICLESTATUS;
+var visible = true;
+ if(vhcleSts == 'E'){
+  visible = false;
+ }
+ this.MOPSelectedField.sealCond  = visible;
+ this.MOPSelectedField.seal1  = visible;
+ this.MOPSelectedField.seal2  = visible;
 }
 
 filterAgencies(name: string) {
@@ -60,10 +102,27 @@ agencies = [];
   TransModes=[];
   ngOnInit() {
   var that = this;
+
+  // this.firstFormGroup = this._formBuilder.group({
+  //   firstCtrl: ['', Validators.required],
+  //   vhcleNoCtrl: ['', Validators.required],
+  //   vhcleStsCtrl: ['', Validators.required],
+  //   sealNoCtrl: ['', Validators.required],
+  //   sealCnCtrl: ['', Validators.required],
+  //   agncyNmeCtrl: ['', Validators.required],
+  //   noOfBxCtrl: ['', Validators.required],
+  //   seal1Ctrl:['', Validators.required]
+  // });
+  // this.secondFormGroup = this._formBuilder.group({
+  //   secondCtrl: ['', Validators.required]
+  // });
+
+
   window.VRNUserDB.collection('Params').find({'Domain':'TrnsprtMode'},{'modeNum':1,'modeTxt':1 }).execute().then(docs => {
     that.TransModes =  docs;
   })
   this.agenciesData();
+  this.MOPSelectionChange();
   }
 
 agenciesData(){
@@ -196,6 +255,24 @@ licenseRegionData = [];
 
 // }
 
+
+
+feildValidation={
+  vehStat 	: { RD: true,  RB: false, HD: false,  CR: false, CA: false },
+  vehNo 	  : { RD: true,  RB: true,  HD: false,  CR: true,  CA: true  },
+  fleetType : { RD: true,  RB: true,  HD: false,  CR: true,  CA: true  },
+  transName : { RD: true,  RB: true,  HD: false,  CR: true,  CA: true  },
+  sealCond 	: { RD: true,  RB: false, HD: false,  CR: false, CA: false },
+  seal1 	  : { RD: true,  RB: false, HD: false,  CR: false, CA: false },
+  seal2 	  : { RD: true,  RB: false, HD: false,  CR: false, CA: false },
+  licNo 	  : { RD: true,  RB: true,  HD: false,  CR: true,  CA: true  },
+  mobNo 	  : { RD: true,  RB: true,  HD: true,   CR: true,  CA: true  },
+  personName: { RD: true,  RB: true,  HD: true,   CR: true,  CA: true  },
+  noOfBoxes : { RD: true,  RB: false, HD: false,  CR: false, CA: false },
+  lrNo 		  : { RD: true,  RB: false, HD: false,  CR: true,  CA: false },
+  idProof 	: { RD: false, RB: false, HD: true,   CR: false, CA: false }
+};
+
   createLicenseDta(): void{
     var that = this;
     // window.VRNUserDB.collection('LicenseRegion').find({}).execute().then(docs => {
@@ -224,13 +301,13 @@ licenseRegionData = [];
 @Component({
   selector: 'create-License-Dialog',  
   templateUrl: './create-License-Dialog.html',
-  styleUrls: ['./create-vrn.component.css']
+  styleUrls: ['./create-vrn2.component.css']
 })
 export class CreateLicenseDialog {
 
   constructor(
     public dialogRef: MatDialogRef<CreateLicenseDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public snackBar: MatSnackBar,public createVRNComponent: CreateVRNComponent) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, public snackBar: MatSnackBar,public createVRNComponent: CreateVRN2Component) { }
 
 
     openSnackBar(message: string, action: string) {
@@ -279,4 +356,23 @@ onClose() {
   this.dialogRef.close();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+

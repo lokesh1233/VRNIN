@@ -10,9 +10,9 @@
     justify-content: center;
   }
   
-  .example-sidenav {
+  /* .example-sidenav {
     width: 18%;
-  }
+  } */
 
   .example-icon {
     padding: 0 14px;
@@ -133,5 +133,4 @@
 
   .widthContent{
     width: 95%;
-    height: 95%;
   }

@@ -30,9 +30,24 @@
         <input matInput placeholder="Enter Vehicle No." (change) = 'vehicleSelection()' value="{{createVRNData.VEHICLENUM}}" [(ngModel)]="createVRNData.VEHICLENUM">
       </mat-form-field>
     
+<form  class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Enter Transporter/Agency Name."  aria-label="Agency" [matAutocomplete]="auto" [formControl]="agencyCtrl">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let agency of filteredAgencies | async" [value]="agency.Name1">
+            <!-- <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" /> -->
+            <span>{{ agency.Name1 }}</span> 
+            <small> ({{ agency.Vendor}})</small>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
+
+<!-- 
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Enter Transporter/Agency Name." value="{{createVRNData.TRANSPORTER}}" [(ngModel)]="createVRNData.TRANSPORTER">
-    </mat-form-field>
+    </mat-form-field> -->
     
       <mat-radio-group placeholder="Seal Condition" [(value)]="createVRNDtlData.SEALCONDITION" [(ngModel)]="createVRNDtlData.SEALCONDITION">
           <mat-radio-button value="I">Intact </mat-radio-button>
@@ -43,10 +58,13 @@
       <mat-form-field class="example-full-width">
           <input matInput placeholder="No of Boxes" value="{{createVRNDtlData.NUMOFBOXES}}" [(ngModel)]="createVRNDtlData.NUMOFBOXES">
       </mat-form-field>
-    
-      <mat-form-field class="example-full-width">
+    <div >
+      <mat-form-field class="licenseEvent" >
           <input matInput placeholder="Driver License No." (change)="licenseSelection()"  value="{{createVRNData.LICENSENUM}}" [(ngModel)]="createVRNData.LICENSENUM">
-      </mat-form-field>
+        </mat-form-field>
+        <button mat-icon-button (click)='createLicenseDta()'>
+          <mat-icon aria-label="">add</mat-icon>
+        </button></div>
     
       <mat-form-field class="example-full-width">
           <input matInput placeholder="Driver/Pickup Person Name." value="{{createVRNData.DRIVERNAME}}" [(ngModel)]="createVRNData.DRIVERNAME">

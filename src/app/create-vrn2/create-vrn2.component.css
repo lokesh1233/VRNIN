@@ -26,7 +26,7 @@
 }
 
 .example-form {
-  margin: 15px;
+  margin: 8px;
   width: 100%;
 }
 
@@ -146,10 +146,10 @@
   min-width: 300px;
 }
 
-.widthContent{
+/* .widthContent{
   width: 95%;
   height: 95%;
-}
+} */
 
 .example-full-width {
   width: 100%;
