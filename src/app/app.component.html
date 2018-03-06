@@ -1,5 +1,5 @@
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="over" opened="true" >
+    <mat-drawer #drawer class="example-sidenav" mode="side" opened="true" >
         <!-- opened="true" -->
          
                 <mat-toolbar color="primary">
@@ -14,14 +14,15 @@
                     
                 <mat-nav-list >
                     <mat-list-item *ngFor="let data of createUserData"  (click)="onVRNSelected(data)"   class="{{data.class}} heightStable">
-               <div>
+               
+                   <mat-icon mat-list-icon color='primary'> {{data.transportIcon}} </mat-icon> 
                         <h4 class="marginTitle">VRN. {{data.VRN}}</h4>
                         
-                 <span class="marginTitle">Vehicle No. {{data.VEHICLENUM}}</span>
+                 <p class="marginTitle">Vehicle No. {{data.VEHICLENUM}}</p>
                
-                 <span class="marginTitle">{{data.PURPOSE}}</span>
+                 <!-- <span class="marginTitle">{{data.PURPOSE}}</span> -->
                 
-                </div> 
+              
                 </mat-list-item> 
                   </mat-nav-list>
                

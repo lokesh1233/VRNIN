@@ -29,6 +29,8 @@ export class CreateVRN2Component {
 }
 
 MOPSelectedField = {};
+addButtonVal = false;
+
 
 MOPSelectionChange(){
   var valdtn = this.feildValidation;
@@ -38,6 +40,9 @@ MOPSelectionChange(){
     this.MOPSelectedField[i] = valdtn[i][selectedKey];
   }
 
+  this.createVRNDtlData.VEHICLESTATUS = 'L';
+  this.createVRNDtlData.SEALCONDITION = 'I';
+  this.addButtonVal = false;
 }
 
 
@@ -49,6 +54,7 @@ var visible = true;
  if(vhcleSts == 'E'){
   visible = false;
  }
+ this.createVRNDtlData.SEALCONDITION = 'I';
  this.MOPSelectedField.sealCond  = visible;
  this.MOPSelectedField.seal1  = visible;
  this.MOPSelectedField.seal2  = visible;
@@ -60,10 +66,9 @@ sealConditionChange(){
 
  var vhcleSts =  this.createVRNDtlData.SEALCONDITION;
 var visible = true;
- if(vhcleSts == 'E'){
+ if(vhcleSts == 'N'){
   visible = false;
  }
- this.MOPSelectedField.sealCond  = visible;
  this.MOPSelectedField.seal1  = visible;
  this.MOPSelectedField.seal2  = visible;
 }
@@ -181,8 +186,15 @@ licenseSelection(){
 
   var that = this;
   window.VRNUserDB.collection('License').find({'Licencenumber':Number(LcnseNo)},{'Lastname': 1,'Telephone': 1 }).execute().then(docs => {
-    that.createVRNData.DRIVERNAME = docs.length>0?docs[0].Lastname:"";
-    that.createVRNData.DRIVERNUM = docs.length>0?docs[0].Telephone:"";
+    if(docs.length>0){
+      that.createVRNData.DRIVERNAME = docs[0].Lastname;
+      that.createVRNData.DRIVERNUM = docs[0].Telephone;
+      that.addButtonVal = false;
+    }else{
+      that.createVRNData.DRIVERNAME = "";
+      that.createVRNData.DRIVERNUM = "";
+      that.addButtonVal = true;
+    }
   })
   
 }
@@ -210,7 +222,7 @@ onSubmit(){
  
 debugger;
 
-this.createVRNData.PURPOSE = this.selectedIndex == 0 ? "Inbound" : "Outbound"; 
+this.createVRNData.PURPOSE = '';//this.selectedIndex == 0 ? "Inbound" : "Outbound"; 
 var that = this;
 
 var cnt = window.VRNUserDB.collection('VRNHeader').count();
@@ -259,7 +271,7 @@ licenseRegionData = [];
 
 feildValidation={
   vehStat 	: { RD: true,  RB: false, HD: false,  CR: false, CA: false },
-  vehNo 	  : { RD: true,  RB: true,  HD: false,  CR: true,  CA: true  },
+  vehNo 	  : { RD: true,  RB: true,  HD: true,  CR: true,  CA: true  },
   fleetType : { RD: true,  RB: true,  HD: false,  CR: true,  CA: true  },
   transName : { RD: true,  RB: true,  HD: false,  CR: true,  CA: true  },
   sealCond 	: { RD: true,  RB: false, HD: false,  CR: false, CA: false },
@@ -292,6 +304,8 @@ feildValidation={
     dialogRef.afterClosed().subscribe(result => {
       debugger;
       console.log('The dialog was closed');
+      that.createVRNData.DRIVERNUM = result.Telephone;
+      that.createVRNData.DRIVERNAME = result.Lastname;
     //  this.animal = result;
     });
   }
@@ -346,9 +360,9 @@ onSubmit() {
   window.VRNUserDB.collection('License').insertOne(this.createNewLicense).then(docs => {
     debugger;
       that.openSnackBar('Succesflly created license', '');
-      that.createVRNComponent.createVRNData.DRIVERNUM = dta.Telephone;
-      that.createVRNComponent.createVRNData.DRIVERNAME = dta.Lastname;
-      that.dialogRef.close();
+     // that.createVRNComponent.createVRNData.DRIVERNUM = dta.Telephone;
+     // that.createVRNComponent.createVRNData.DRIVERNAME = dta.Lastname;
+      that.dialogRef.close(dta);
   })
 }
 

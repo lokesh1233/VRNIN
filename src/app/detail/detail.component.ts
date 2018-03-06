@@ -23,6 +23,16 @@ export class DetailComponent implements OnInit {
     this.paramData();
   }
 
+  MOPSelectionChange(){
+    var valdtn = this.feildValidation;
+    //this.MOPSelectedField = {};
+    var selectedKey = this.vrnMaterData.MODEOFTRANSPORT;
+    for(var i in valdtn){
+      this.MOPSelectedField[i] = valdtn[i][selectedKey];
+    }
+  }
+
+  MOPSelectedField = {};
   VRNId = '';
   roadTransport='';
   paramValues={};
@@ -53,6 +63,7 @@ export class DetailComponent implements OnInit {
       // this.vrnMaterData.SEALNUM = '';
     }
     this.loadVRNDetail(id);
+    this.MOPSelectionChange();
   }
 
   loadVRNDetail(id){
@@ -111,5 +122,21 @@ var that = this;
       duration: 2000,
     });
   }
+
+  feildValidation={
+    vehStat 	: { RD: true,  RB: false, HD: false,  CR: false, CA: false },
+    vehNo 	  : { RD: true,  RB: true,  HD: true,  CR: true,  CA: true  },
+    fleetType : { RD: true,  RB: true,  HD: false,  CR: true,  CA: true  },
+    transName : { RD: true,  RB: true,  HD: false,  CR: true,  CA: true  },
+    sealCond 	: { RD: true,  RB: false, HD: false,  CR: false, CA: false },
+    seal1 	  : { RD: true,  RB: false, HD: false,  CR: false, CA: false },
+    seal2 	  : { RD: true,  RB: false, HD: false,  CR: false, CA: false },
+    licNo 	  : { RD: true,  RB: true,  HD: false,  CR: true,  CA: true  },
+    mobNo 	  : { RD: true,  RB: true,  HD: true,   CR: true,  CA: true  },
+    personName: { RD: true,  RB: true,  HD: true,   CR: true,  CA: true  },
+    noOfBoxes : { RD: true,  RB: false, HD: false,  CR: false, CA: false },
+    lrNo 		  : { RD: true,  RB: false, HD: false,  CR: true,  CA: false },
+    idProof 	: { RD: false, RB: false, HD: true,   CR: false, CA: false }
+  };
 
 }

@@ -26,16 +26,16 @@
       </mat-grid-list> -->
 
     <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
-        <mat-step >
+        <mat-step *ngIf='createVRNData.MODEOFTRANSPORT != HD'>
             <ng-template matStepLabel>Vehicle</ng-template>
 
             <!-- <form > -->
-            <mat-radio-group placeholder="Vehicle Status" (change)="vehicleStatusChange()" *ngIf="MOPSelectedField.vehStat" required  [(ngModel)]="createVRNDtlData.VEHICLESTATUS">
+            <mat-radio-group placeholder="Vehicle Status" (change)="vehicleStatusChange()" value={{createVRNDtlData.VEHICLESTATUS}}  *ngIf="MOPSelectedField.vehStat" required  [(ngModel)]="createVRNDtlData.VEHICLESTATUS">
                 <mat-radio-button value="L">Loaded</mat-radio-button>
                 <mat-radio-button value="E">Empty</mat-radio-button>
             </mat-radio-group>
 
-            <mat-form-field class="example-full-width" *ngIf="MOPSelectedField.vehNo">
+            <mat-form-field class="example-full-width" *ngIf="MOPSelectedField.vehNo">  
                 <input matInput  placeholder="Vehicle No."  (change) = 'vehicleSelection()'  [(ngModel)]="createVRNData.VEHICLENUM">
             </mat-form-field>
 
@@ -52,8 +52,8 @@
                   </mat-option>
                 </mat-autocomplete>
               </mat-form-field>
-                
-                      <mat-radio-group [(value)]="createVRNDtlData.SEALCONDITION" *ngIf="MOPSelectedField.sealCond" [(ngModel)]="createVRNDtlData.SEALCONDITION">
+
+                      <mat-radio-group [(value)]="createVRNDtlData.SEALCONDITION" (change)="sealConditionChange()"  *ngIf="MOPSelectedField.sealCond" [(ngModel)]="createVRNDtlData.SEALCONDITION">
                           <mat-radio-button value="I">Intact </mat-radio-button>
                           <mat-radio-button value="D">Damaged</mat-radio-button>
                           <mat-radio-button value="N">No Seal</mat-radio-button>
@@ -83,10 +83,10 @@
             <ng-template matStepLabel>Driver</ng-template>
            
 
-            <mat-form-field class="licenseEvent" >
-                <input matInput placeholder="Driver License No." *ngIf="MOPSelectedField.licNo" (change)="licenseSelection()"  value="{{createVRNData.LICENSENUM}}" [(ngModel)]="createVRNData.LICENSENUM">
+            <mat-form-field class="licenseEvent" *ngIf="MOPSelectedField.licNo">
+                <input matInput placeholder="Driver License No."  (change)="licenseSelection()"  value="{{createVRNData.LICENSENUM}}" [(ngModel)]="createVRNData.LICENSENUM">
               </mat-form-field>
-              <button mat-icon-button (click)='createLicenseDta()'>
+              <button mat-icon-button (click)='createLicenseDta()' *ngIf="addButtonVal">
                 <mat-icon aria-label="">add</mat-icon>
               </button>
           
@@ -100,10 +100,10 @@
          
             <mat-form-field class="licenseEvent" *ngIf="MOPSelectedField.idProof">
                 <input matInput placeholder="ID proof type"  (change)="licenseSelection()"  value="{{createVRNData.IDPROOFTYPE}}" [(ngModel)]="createVRNData.IDPROOFTYPE" disabled='true'>
-                <button mat-icon-button (click)='selectIDProof()'>
-                    <mat-icon aria-label="">add</mat-icon>
-                  </button>
               </mat-form-field>
+              <button mat-icon-button (click)='selectIDProof()' *ngIf="MOPSelectedField.idProof">
+                <mat-icon aria-label="">add</mat-icon>
+              </button>
               
           
             <mat-form-field class="example-full-width" *ngIf="MOPSelectedField.idProof">
@@ -118,7 +118,7 @@
         </mat-step>
         <mat-step>
           <ng-template matStepLabel>Done</ng-template>
-          
+      
           <mat-form-field class="example-full-width" *ngIf="MOPSelectedField.lrNo">
               <input matInput placeholder="AWB no./Docker no./LR no." value="{{createVRNData.LRNUM}}" [(ngModel)]="createVRNData.LRNUM">
           </mat-form-field>
