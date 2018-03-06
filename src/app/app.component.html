@@ -14,15 +14,14 @@
                     
                 <mat-nav-list >
                     <mat-list-item *ngFor="let data of createUserData"  (click)="onVRNSelected(data)"   class="{{data.class}} heightStable">
-               
-                   <mat-icon mat-list-icon color='primary'> {{data.transportIcon}} </mat-icon> 
+               <div>
+                   <!-- <mat-icon mat-list-icon color='primary'> {{data.transportIcon}} </mat-icon>  -->
                         <h4 class="marginTitle">VRN. {{data.VRN}}</h4>
-                        
-                 <p class="marginTitle">Vehicle No. {{data.VEHICLENUM}}</p>
+                 <span class="marginTitle">Vehicle No. {{data.VEHICLENUM}}</span>
                
                  <!-- <span class="marginTitle">{{data.PURPOSE}}</span> -->
                 
-              
+                </div>
                 </mat-list-item> 
                   </mat-nav-list>
                
